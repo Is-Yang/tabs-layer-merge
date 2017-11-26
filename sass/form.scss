@@ -1,0 +1,328 @@
+@import 'lib';
+@font-face {
+	font-family: 'closeIcon';
+	src: url('../icons/iconfont.eot?#iefix') format('embedded-opentype'), url('../icons/iconfont.woff') format('woff'), url('../icons/iconfont.ttf') format('truetype'), url('../icons/iconfont.svg#iconfont') format('svg');
+}
+
+.clickLayer {
+	display: block;
+	margin: 10% auto;
+	width: 200px;
+	height: 48px;
+	line-height: 48px;
+	background-color: $colorTheme;
+	color: #fff;
+	@include borderRadius(5px);
+	font-size: 16px;
+	text-align: center;
+	@include transition;
+	&:hover {
+		opacity: .88;
+		color: #fff;
+	}
+	&:active {
+		opacity: .9;
+		color: #fff;
+	}
+}
+
+.tab-container {
+	padding: 10px 0;
+	background-color: #fff;
+	overflow: hidden;
+	@include borderRadius(4px);
+	@include boxShadow;
+	
+	
+
+	.tab-nav {
+		width: 100%;
+		border-bottom: 1px solid #ddd;
+		@include displayFlex;
+		position: relative;
+		padding: 0 5%;
+		&>a {
+			width: 20%;
+			padding: 20px 2%;
+			font-size: 16px;
+			text-align: center;
+			&.active {
+				color: $colorTheme;
+			}
+		}
+		&>span {
+			width: 18%;
+			position: absolute;
+			bottom: 0;
+			border: 2px solid $colorTheme;
+			z-index: 1;
+			@include transition;
+			@include formTranslate(translate(0,
+			0));
+		}
+	}
+	.tab-content {
+		padding: 10px 10%;
+		&>div {
+			transform: translate(-115%, 0);
+			@include transition(all .45s ease-out);
+			&:first-child {
+				transform: translate(0, 0);
+			}
+		}
+		.input-writer {
+			width: 100%;
+			padding: 1px 8px;
+			height: 45px;
+			border: 1px solid #ddd;
+			@include borderRadius(5px);
+			background-color: transparent;
+			margin-top: 12px;
+			font-size: 15px;
+			color: #333;
+			&:focus {
+				border: 1px solid $colorTheme;
+			}
+		}
+		.formTip {
+			font-size: 12px;
+			color: $colorError;
+			min-height: 2rem;
+			line-height: 24px;
+			margin-top: 5px;
+			text-align: center;
+		}
+		.btn {
+			margin: 5px 0 10px;
+			display: block;
+			width: 100%;
+			@include borderRadius(5px);
+			height: 50px;
+			border: 1px solid #fff;
+			background-color: $colorWarning;
+			color: #fff;
+			line-height: 50px;
+			text-align: center;
+			font-size: 18px;
+			&:active {
+				opacity: .66;
+			}
+		}
+		.other-opter {
+			padding: 10px 0;
+			text-align: right;
+			&>label {
+				cursor: pointer;
+			}
+			&>* {
+				margin-left: 8px;
+				color: #686868;
+			}
+			.txt {
+				color: $colorWarning;
+				padding-bottom: 2px;
+				font-size: 16px;
+				&:hover {
+					border-bottom: 1px solid $colorWarning;
+				}
+			}
+		}
+		#pregister {
+			.input-box {
+				position: relative;
+				.input-writer {
+					padding-right: 1.5rem;
+				}
+				.get-code {
+					width: 33%;
+					height: 28px;
+					position: absolute;
+					right: 0;
+					bottom: 14%;
+					z-index: 9;
+					background-color: transparent;
+					border-left: 1px solid $colorTheme;
+					border-right: 0;
+					border-bottom: 0;
+					border-top: 0;
+					color: $colorWarning;
+					font-size: 14px;
+					cursor: pointer;
+					&:active {
+						color: $colorWarning;
+					}
+				}
+			}
+		}
+	}
+	.login-other {
+		border-top: 1px solid #ddd;
+		@include displayFlex;
+		@include flexJustifyContent(center);
+		>a {
+			width: 40%;
+			max-width: 150px;
+			height: 38px;
+			line-height: 38px;
+			color: #fff;
+			text-align: center;
+			@include borderRadius(4px);
+			margin: 15px 15px 0 0;
+			font-size: 13px;
+			&:first-child {
+				background-color: #8184fd;
+			}
+			&:last-child {
+				background-color: #1dc350;
+			}
+		}
+	}
+}
+
+.layer-view {
+	width: 100%;
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	z-index: 9;
+	background-color: rgba(0, 0, 0, .5);
+	@include displayFlex;
+	@include flexAlignItems(center);
+
+	.box-wrapper {
+		width: 75%;
+		max-width: 540px;
+		margin: 0 auto 3%;
+		min-height: 400px;
+		@include animation(openScale .35s ease-in);
+		position: relative;
+
+		.close {
+			display: inline-block;
+			font-family: closeIcon;
+			font-style: normal;
+			font-size: 28px;
+			color: #ffffff;
+			border-radius: 50%;
+			background-color: #616060;
+			box-shadow: 0 0 10px #4e4e4e;
+			text-align: center;
+			line-height: 24px;
+			position: absolute;
+			right: -15px;
+			top: -10px;
+			z-index: 9;
+			cursor: pointer;
+			-webkit-text-stroke-width: 0.2px;
+			user-select: none;
+
+			&:active {
+				color: $colorWarning;
+			}
+		}
+	}
+	
+	.closeAnima {
+		@include animation(closeScale .35s ease-out);
+	}
+}
+
+.disabled {
+	cursor: not-allowed;
+	color: #ddd;
+	pointer-events: none;
+}
+
+// 打开
+@-webkit-keyframes openScale {
+	from {
+		opacity: 0;
+		@include formTranslate(scale(.4));
+	}
+	to {
+		opacity: 1;
+		@include formTranslate(scale(1));
+	}
+}
+
+@-moz-keyframes openScale {
+	from {
+		opacity: 0;
+		@include formTranslate(scale(.4));
+	}
+	to {
+		opacity: 1;
+		@include formTranslate(scale(1));
+	}
+}
+
+@-o-keyframes openScale {
+	from {
+		opacity: 0;
+		@include formTranslate(scale(.4));
+	}
+	to {
+		opacity: 1;
+		@include formTranslate(scale(1));
+	}
+}
+
+@keyframes openScale {
+	from {
+		opacity: 0;
+		@include formTranslate(scale(.4));
+	}
+	to {
+		opacity: 1;
+		@include formTranslate(scale(1));
+	}
+}
+
+// 关闭
+@-webkit-keyframes closeScale {
+	from {
+		opacity: 1;
+		@include formTranslate(scale(.5));
+	}
+	to {
+		opacity: 0;
+		display: none;
+		@include formTranslate(scale(0));
+	}
+}
+
+@-moz-keyframes closeScale {
+	from {
+		opacity: 1;
+		@include formTranslate(scale(.5));
+	}
+	to {
+		opacity: 0;
+		display: none;
+		@include formTranslate(scale(0));
+	}
+}
+
+@-o-keyframes closeScale {
+	from {
+		opacity: 1;
+		@include formTranslate(scale(.5));
+	}
+	to {
+		opacity: 0;
+		display: none;
+		@include formTranslate(scale(0));
+	}
+}
+
+@keyframes closeScale {
+	from {
+		opacity: 1;
+		@include formTranslate(scale(.5));
+	}
+	to {
+		opacity: 0;
+		display: none;
+		@include formTranslate(scale(0));
+	}
+}
